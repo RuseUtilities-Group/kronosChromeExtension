@@ -1,2 +1,2 @@
 # kronosChromeExtension
-Chrome Etension for Kronos.
+Chrome Extension for Kronos.
