@@ -1,0 +1,14 @@
+{  
+  "manifest_version": 2,  
+  "name": "KronosTest",  
+  "description": "Kronos is a student organiser/utility designed for JRAHS's students and teachers, notifying when to go to class or go to break.",  
+  "version": "1.5",  
+  "browser_action": {  
+   "default_icon": "logo.jpg",  
+   "default_popup": "times.html"  
+  },  
+  "permissions": [  
+   "activeTab",  
+   "storage"  
+  ]  
+ }  

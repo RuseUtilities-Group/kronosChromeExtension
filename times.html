@@ -1,0 +1,81 @@
+<!-- 
+Copyright 2020 Ruse Utilities Group
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="./main.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" href="./Styles/images/kronosicon.jpg" type="image/icon type">
+	<title>Bell Times</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+	  
+</head>
+
+<body style="width: 500px; height: 300px">
+<header>
+<!-- The sidebar -->
+			<div class="sidebar">
+				<a href="./times.html" id="loginDiv" style="color: #D4AF37 !important"><i class="fa fa-fw fa-bell" id="loginIcon"></i></a>
+				<a href="./upload.html" id="timetableDiv"><i class="fa fa-fw fa-book" id="settingsIcon"></i></a>
+				<script type="text/javascript" src="/Scripts/showTimetable.js"></script>  
+			</div>
+		</header>
+		<main style="text-align:center">
+			<div class="css-top-inside">
+				<table id="timetable" style="margin-left: 10%">
+				</table>
+			</div>
+</header>	
+<div id="container">
+	
+<header>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		.nono {
+			display: none;
+		}
+	</style>
+
+</header>
+ 
+  <main style="text-align:center; margin-left: 15px">
+
+ <script type="text/javascript" src="./Scripts/timer2.js"></script>
+<div style="margin-left: 50px;">
+        <div class="css-centre-outside">
+      <div class="css-centre-inside">
+        <p style="margin-right: 200px"><span id="period"></span> <span class="nono" style="margin-right: 200px">of <span id="day"></span> </span>in</p>
+	<p><span id="timer" style="margin-right: 200px"></span></p>
+        <table id="times">
+        </table>
+      </div>
+
+<div class="theme-switch-wrapper" style="margin-left: 100px; margin-bottom: 30px !important"> 
+ 	<em style="padding-right: 20px !important">Night Mode</em>
+       <label class="theme-switch" for="checkbox">
+    <input type="checkbox" id="checkbox" />
+    <div class="slider round"></div>
+  </label>
+  </div>
+    </div>
+    
+  </main>
+<script type="text/javascript" src="./Scripts/settingsTheme.js"></script>  
+</div>
+</div>
+</body>
+</html>
