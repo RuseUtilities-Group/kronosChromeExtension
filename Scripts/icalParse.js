@@ -166,5 +166,6 @@ async function icalProcess() {
 		window.location.href = "/timetable.html";
 	} catch(err) {
 		console.log(err);
+		alert(err)
 	}
 }
