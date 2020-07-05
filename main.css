@@ -58,25 +58,18 @@ body{
   padding-bottom: 30px;
 }
 
-#loginDiv {
+#bellsDiv {
   padding-bottom: 30px;
 }
 
 
 
-#homeIcon {
+
+#bellsIcon {
   padding-right: 50px;
 }
 
-#classesIcon {
-  padding-right: 50px;
-}
-
-#loginIcon {
-  padding-right: 50px;
-}
-
-#settingsIcon{
+#timetableIcon{
   padding-right: 50px;
 }
 
