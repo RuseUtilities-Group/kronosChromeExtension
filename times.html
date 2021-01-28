@@ -1,77 +1,67 @@
-<!-- 
-Copyright 2020 Ruse Utilities Group
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
+<!--By Joshua Koh, Ethan Du Toit, Yurui Zi-->
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<link href="./main.css" rel="stylesheet" type="text/css" />
-	<link rel="icon" href="./Styles/images/kronosicon.jpg" type="image/icon type">
-	<title>Bell Times</title>
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap" rel="stylesheet"> 
-	  
-</head>
+<html> 
+    <head>
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="./main.css">
+        <script type="text/javascript" src="/scripts/timer2.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap" rel="stylesheet">
+		<style>
+			body{
+				font-family: "Red Hat Text";
+				height: 300px !important;
+				width: 500px;
+				background-image: linear-gradient(120deg, #f6d365, #fda085);
+			}
 
-<body style="width: 500px; height: 500px">
-<header>
-<!-- The sidebar -->
-		</header>
-		<main style="text-align:center">
-			<div class="css-top-inside">
-				<table id="timetable" style="margin-left: 10%">
-				</table>
-			</div>
-</header>	
-<div id="container">
-	
-<header>
-	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<style>
-		.nono {
-			display: none;
-		}
-	</style>
+			.kronosTimer{
+				position: absolute;
+				left: 3%;
+				top: 4.5%;
+			}
 
-</header>
- 
-  <main style="text-align:center; margin-left: 12.5%">
+			#insight{
+				border-radius: 15px;
+				border: thick rgba(253, 160, 133, 0.9);
+				background-color: rgba(253, 160, 133, 0.9);
+				padding-top: 2.5%;
+				padding-left: 10%;
+				width: 250px;
+			}
 
- <script type="text/javascript" src="./Scripts/timer2.js"></script>
-<div style="margin-left: 50px;">
-        <div class="css-centre-outside">
-      <div class="css-centre-inside">
-        <p style="margin-right: 200px"><span id="period"></span> <span class="nono" style="margin-right: 200px">of <span id="day"></span> </span>in</p>
-	<p><span id="timer" style="margin-right: 200px"></span></p>
-        <table id="times">
-        </table>
-      </div>
+			#todaysClasses{
+				position: absolute;
+				top: 4.5%;
+				padding-left: 60%;
+			}
 
-<div class="theme-switch-wrapper" style="margin-left: 100px; margin-bottom: 30px !important"> 
- 	<em style="padding-right: 20px !important">Night Mode</em>
-       <label class="theme-switch" for="checkbox">
-    <input type="checkbox" id="checkbox" />
-    <div class="slider round"></div>
-  </label>
-  </div>
-    </div>
-    
-  </main>
-<script type="text/javascript" src="./Scripts/settingsTheme.js"></script>  
-</div>
-</div>
-</body>
+			#tick{
+				position: absolute;
+				top: 72.5%;
+				left: 3.5%;
+				display: flex;
+			}
+		</style>
+    </head>
+    <body>
+          <container class="kronosTimer">
+            <div id="insight">
+              <p style="font-size: 25px"><span id="period" style="font-size: 27.5px !important"></span> <span class="nono"><noscript id="day"></noscript> </span></p>
+              <b><h2 id="periodCountdown" style="font-size: 40px !important"></h2></b>
+              <p id="periodInfo" style="font-size: 22.5px !important"></p>
+              <br>
+              <p><span id="timer"></span></p>
+            </div>
+		  </container>
+		  <div id="todaysClasses" style="position: absolute;">
+			<table id="times" style="font-size: 22.5px">
+			</table>
+		  </div>
+		  <div id="tick">
+			<h3 style="font-size: 140%;">Open in New Tab During School &nbsp; &nbsp;</h3>
+			<input onclick="choiceOn()" style="margin-top: 7.75%;" id="newTab" type="checkbox">
+		  </div>
+		  <script src="./scripts/background.js"></script>
+    </body>
 </html>

@@ -1,20 +1,6 @@
-/*
-Copyright 2020 Ruse Utilities Group
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
+// By Chris Ahn and Ethan Du Toit and Joshua Koh
 let next = 0;
-let jsonPath = 'Scripts/';
+let jsonPath = 'scripts/';
 let times = [];
 let today = new Date();
 let jan1 = new Date();
@@ -64,23 +50,37 @@ function timeStringToMS(timeString) {
 }
 function gen_table(json) {
 	table = document.getElementById("times");
-	console.log(table);
 	tstr = "";
 	it = json.timetableData[dateNamesTo[day()].toLowerCase() + week()];
 	if (it === undefined) {
 		console.log ("Uh oh");
 		it = {};
 	}
-
-	for(const [k, v] of Object.entries(it)) {
+	for(var [k, v] of Object.entries(it)) {
 		tstr += "<tr><td id=\"time1\">";
-		tstr += k;
-		if(addDetails && v.room != "") {
-			tstr += `: ${v.subject}<br><div class="timeSubtext">at ${v.room} with ${v.teacher}<div>`;
-		}
-		tstr += "</td><td id=\"time2\">";
-		tstr += v.startTime;
-		tstr += "</td></tr>";
+		if(v.room == "Sport"){
+			tstr += `<div class="timeSubtext">${k}: Sport</div>`
+		}else if(!v.room){
+			switch(k){
+				case "P1": k = "Period 1"
+				break;
+				case "P2": k = "Period 2"
+				break;
+				case "P3": k = "Period 3"
+				break;
+				case "P4": k = "Period 4"
+				break;
+				case "P5": k = "Period 5"
+				break;
+				case "P6": k = "Period 6"
+				break;
+				case "P7": k = "Period 7"
+				break;
+				case "P8": k = "Period 8"
+				break;
+			} 
+		} else if(v.room === "Recess"|| v.room === "Lunch"||v.room === "End of Day"||v.room === "Assembly")  tstr += `<div class="timeSubtext">${v.room}- ${v.startTime}<div>`;
+		if(!v.room && k !== "Recess" && k !== "Assembly" && k !=="Lunch" && k !== "End of Day") tstr +=  `<div class="timeSubtext">${k} - ${v.startTime}</div>`;
 		times.push({periodName: k, timeFrom: timeStringToMS(v.startTime)});
 	}
 	table.innerHTML = tstr;
@@ -97,30 +97,29 @@ function moveDay(json) {
 		//the next period is tomorrow
 		next = 0;
 		times = [];
-		console.log(next, times.length)
 		today.setDate(today.getDate()+1); //tomorrow comes today
 		gen_table(json);
 		updateDay();
 	}
 }
 function update(json) {
-	timer = document.getElementById("timer");
+	periodCountdown = document.getElementById("periodCountdown")
+	periodInfo = document.getElementById("periodInfo")
 	period = document.getElementById("period");
 	moveDay(json);
 	let tt = timeTil();   
 	while (tt < 0) {
-		console.log("iteration");
 		next++;
 		moveDay(json);
 		tt = timeTil();
 	}
-	timer.innerHTML = timeTilHMS();
-	if(json.timetableData[dateNamesTo[day()].toLowerCase() + week()][times[next].periodName].subject != "") {
-		period.innerHTML = `${times[next].periodName}: ${json.timetableData[dateNamesTo[day()].toLowerCase() + week()][times[next].periodName].subject}`;
-	}
-	else {
-		period.innerHTML = times[next].periodName;
-	}
+	periodCountdown.innerHTML = `${timeTilHMS()}`
+	if(json.timetableData[dateNamesTo[day()].toLowerCase() + week()][times[next].periodName].room === "Sport") periodInfo.innerHTML = "Sport";
+	else if(json.timetableData[dateNamesTo[day()].toLowerCase() + week()][times[next].periodName].room === "Lunch") periodInfo.innerHTML = "Lunch";
+	else if(json.timetableData[dateNamesTo[day()].toLowerCase() + week()][times[next].periodName].room === "Recess") periodInfo.innerHTML = "Recess";
+	else if(json.timetableData[dateNamesTo[day()].toLowerCase() + week()][times[next].periodName].room === "End of Day") periodInfo.innerHTML = "End of Day";
+	else if(json.timetableData[dateNamesTo[day()].toLowerCase() + week()][times[next].periodName].room === "Assembly") periodInfo.innerHTML = "Assembly";
+	else period.innerHTML = `${json.timetableData[dateNamesTo[day()].toLowerCase() + week()][times[next].periodName].name} in`;
 }
 
 let xhr = new XMLHttpRequest();
@@ -134,7 +133,6 @@ xhr.onload = function () {
 		json = JSON.parse(localStorage.getItem("personalTimetable"));
 		addDetails = true;
 	}
-	console.log(json);
 	gen_table(json);
 	updateDay();
 	update(json);
