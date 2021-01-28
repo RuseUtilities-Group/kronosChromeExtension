@@ -1,6 +1,6 @@
 {  
   "manifest_version": 2,  
-  "name": "RuseKronos",  
+  "name": "RuseKronosOpen",  
   "description": "Kronos is a student organiser/utility designed for JRAHS's students and teachers, notifying when to go to class or go to break.",  
   "version": "2.1",  
   "browser_action": {  
@@ -8,6 +8,6 @@
    "default_popup": "times.html"  
   },
   "chrome_url_overrides":{
-    "newtab": "https://rusekronos.xyz"
+    "newtab": "./redirect.html"
   }
  }  
